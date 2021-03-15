@@ -1,0 +1,49 @@
+# intuitive object notation | ion
+hello {
+    # the current deserializer is experimental
+    # and can be buggy at times
+    world 'hello world!'
+}
+
+# this document can be deserialized with the following rust structs
+
+# #[derive(Serialize, Deserialize)]
+# struct Object {
+#     hello: Hello,
+# }
+#
+# #[derive(Serialize, Deserialize)]
+# struct Hello {
+#     world: String,
+# }
+
+# ion supports single line comments
+
+# ion is based on pair expressions
+# this means that for each key, there must be a value
+
+# <key> <value>    this is the standard
+# <key> : <value>  this also works
+# <key> = <value>  this works too
+
+# this means that it is not possible to have a ion
+# object that only contains a list. There must be a key.
+
+# in this case, the key is hello
+# the value is an object that contains
+# the world key and its value
+
+# 
+# keys can be whatever you want as long as they can be interpreted as a string
+# 
+# values can be any of the following:
+#   lists           => [ val ] | [ 1 2 3 ]
+#   maps|structs    => { key value }
+#   string|literal  => string|"string"
+#   i32|f32         => 10 | 10.0
+#   option          => T | ()
+
+#   it should be noted that ion does not have null,
+#   instead, it uses the unit as null
+
+# for syntax highlighting, it is recommended to set ion as ruby

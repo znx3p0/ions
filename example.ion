@@ -1,0 +1,15 @@
+# ion(s) | intuitive object notation (ser/deser)
+College MIT
+Grades {
+    Student1 92
+    Student2 95
+    Student3 93
+    Student4 98
+}
+Classes [
+    History
+    Math
+    Biology
+    CS
+    Classics
+]
