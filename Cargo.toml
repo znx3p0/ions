@@ -4,6 +4,16 @@ version = "0.1.0"
 authors = ["Jose Salazar <znx3p0@gmail.com>"]
 edition = "2018"
 
+license = "MIT"
+documentation = "https://docs.rs/ions/"
+repository = "https://github.com/znx3p0/ions"
+description = """
+ION(s) | intuitive object notation (ser/deser)
+ion is a data format designed to be user friendly,
+easy to pick up and easy on the eyes.
+this library is a serde implementation of the ion data format.
+"""
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
