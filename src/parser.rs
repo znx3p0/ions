@@ -69,7 +69,12 @@ pub fn ion_to_json(file: &str) -> Result<String, anyhow::Error> {
         None => return Err(anyhow::anyhow!("not a valid file"))
     };
     let p = parse_value(p);
-    Ok(p.to_json())
+    let json = p.to_json();
+    if json != "{" {
+        Ok(json)
+    } else {
+        Ok("".to_string())
+    }
 }
 
 use pest::iterators::Pair;
