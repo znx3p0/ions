@@ -44,7 +44,18 @@ impl IONValue<'_> {
                 buf.push(']');
                 buf
             }
-            IONValue::String(a) => format!("\"{}\"", a.to_string()),
+            IONValue::String(a) => {
+                let mut a = a.to_string();
+                if a.as_bytes()[0] as char == '"' {
+                    a
+                } else if a.as_bytes()[0] as char == '\'' {
+                    a.remove(0);
+                    a.remove(a.len() - 1);
+                    format!("\"{}\"", a)
+                } else {
+                    format!("\"{}\"", a)
+                }
+            },
             IONValue::Number(a) => a.to_string(),
             IONValue::Boolean(a) => a.to_string(),
             IONValue::Null => "null".to_string(),
