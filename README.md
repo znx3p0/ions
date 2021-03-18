@@ -41,11 +41,11 @@ pub struct Grades {
 // a deserializer is in progress
 
 use std::fs::read_to_string;
-use ion::json_from_str;
+use ion::ion_to_json;
 
 fn main() {
     let docs = read_to_string("docs.ion").unwrap();
-    let docs = json_from_str(&docs).unwrap();
+    let docs = ion_to_json(&docs).unwrap();
     println!("ion as json {}", docs);
     let docs: Docs = serde_json::from_str(&docs).unwrap();
     println!("{:#?}", docs);
