@@ -1,0 +1,67 @@
+
+ion = {
+    SOI ~ key_val*
+}
+
+object = {
+    "{" ~ "}" |
+    "{" ~ key_val* ~ "}"
+}
+key_val = { string ~ ( ":" | "=" )* ~ value }
+
+array = {
+    "[" ~ "]" |
+    "[" ~ value ~ (value)* ~ "]"
+}
+
+value = _{ object | array | number | boolean | null | string }
+boolean = { "true" | "false" }
+null = { "()" | "null" }
+
+number = @{
+    "-"?
+    ~ ("0" | ASCII_NONZERO_DIGIT ~ ASCII_DIGIT*)
+    ~ ("." ~ ASCII_DIGIT*)?
+    ~ (^"e" ~ ("+" | "-")? ~ ASCII_DIGIT+)?
+}
+
+WHITESPACE = _{ "\t" | "\r" | "\n" | " " }
+COMMENT = _{
+
+    // support various single line comments
+    "#" ~ (!"\n" ~ ANY)*  |
+    ";;" ~ (!"\n" ~ ANY)* |
+    "//" ~ (!"\n" ~ ANY)* |
+    
+    // support various multiline comments
+    "##" ~ (!"##" ~ ANY)* ~ "##" |
+    "{-" ~ (!"-}" ~ ANY)* ~ "-}" |
+    "/*" ~ (!"*/" ~ ANY)* ~ "*/"
+}
+
+string = @{
+    (
+        // match double quoted string
+        "\"" ~ qchar* ~ "\""|
+        // match single quoted string
+        "'" ~ sqchar* ~ "'" |
+        // infer string
+        (ASCII_ALPHANUMERIC |
+           "_" |
+           "."
+        )+
+    ) 
+}
+
+sqchar = {
+    !("'" | "\\") ~ ANY
+    | "\\" ~ ("'" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
+    | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+}
+
+qchar = {
+    !("\"" | "\\") ~ ANY
+
+    | "\\" ~ ("\"" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
+    | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+}

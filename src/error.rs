@@ -10,19 +10,21 @@ impl std::fmt::Display for Err {
 }
 
 impl Error for Err {
-    fn custom<T>(_msg: T) -> Self
+    fn custom<T>(msg: T) -> Self
     where
         T: std::fmt::Display,
-    {
+        {
+        println!("{}", msg.to_string());
         unimplemented!()
     }
 }
 
 impl serde::de::Error for Err {
-    fn custom<T>(_msg: T) -> Self
+    fn custom<T>(msg: T) -> Self
     where
         T: std::fmt::Display,
     {
+        println!("{}", msg.to_string());
         unimplemented!()
     }
 }

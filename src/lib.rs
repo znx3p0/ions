@@ -1,8 +1,12 @@
-mod deserialize;
 mod error;
-mod tests;
 
-use deserialize::{Object, to_json};
+mod parser;
+pub use parser::*;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+
 use serde::{Serialize, ser};
 
 struct Serializer {
@@ -26,12 +30,6 @@ where
     serializer.output.remove(serializer.output.len() - 1);
 
     Ok(serializer.output)
-}
-
-pub fn json_from_str<'a>(s: &'a str) -> Result<String, anyhow::Error>
-{
-    let p = to_json(&Object::parse(s).unwrap());
-    Ok(p)
 }
 
 impl<'a> ser::Serializer for &'a mut Serializer {
