@@ -44,7 +44,7 @@ impl IONValue<'_> {
                 buf.push(']');
                 buf
             }
-            IONValue::String(a) => a.to_string(),
+            IONValue::String(a) => format!("\"{}\"", a.to_string()),
             IONValue::Number(a) => a.to_string(),
             IONValue::Boolean(a) => a.to_string(),
             IONValue::Null => "null".to_string(),
