@@ -5,7 +5,7 @@ p [
     ()
     {
         s 0.1.2
-        w ~/.sh/anotherdir
+        w ~/.sh/anotherdir,
         p [
             ()
         ]

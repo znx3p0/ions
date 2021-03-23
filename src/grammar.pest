@@ -27,7 +27,7 @@ number = @{
 
 version = @{ ("."? ~ ASCII_DIGIT){3,} }
 
-WHITESPACE = _{ "\t" | "\r" | "\n" | " " }
+WHITESPACE = _{ "\t" | "\r" | "\n" | " " | "," | ";" }
 COMMENT = _{
 
     // support various single line comments
