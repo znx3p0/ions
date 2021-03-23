@@ -50,6 +50,7 @@ string = @{
         // infer string
         (ASCII_ALPHANUMERIC |
             "/" |
+            "@" |
             "~" |
             "_" |
             "."
