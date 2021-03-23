@@ -96,6 +96,7 @@ fn parse_value(pair: Pair<Rule>) -> IONValue {
             )
         },
         Rule::array => IONValue::Array(pair.into_inner().map(parse_value).collect()),
+        Rule::version |
         Rule::string => IONValue::String(pair.as_str()),
         Rule::number => IONValue::Number(pair.as_str().parse().unwrap()),
         Rule::boolean => IONValue::Boolean(pair.as_str().parse().unwrap()),

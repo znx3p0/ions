@@ -14,7 +14,7 @@ array = {
     "[" ~ value ~ (value)* ~ "]"
 }
 
-value = _{ object | array | number | boolean | null | string }
+value = _{ object | array | version | number | boolean | null | string }
 boolean = { "true" | "false" }
 null = { "()" | "null" }
 
@@ -24,6 +24,8 @@ number = @{
     ~ ("." ~ ASCII_DIGIT*)?
     ~ (^"e" ~ ("+" | "-")? ~ ASCII_DIGIT+)?
 }
+
+version = @{ ("."? ~ ASCII_DIGIT){3,} }
 
 WHITESPACE = _{ "\t" | "\r" | "\n" | " " }
 COMMENT = _{
@@ -47,8 +49,11 @@ string = @{
         "'" ~ sqchar* ~ "'" |
         // infer string
         (ASCII_ALPHANUMERIC |
-           "_" |
-           "."
+            PUNCTUATION |
+            "/" |
+            "~" |
+            "_" |
+            "."
         )+
     ) 
 }
