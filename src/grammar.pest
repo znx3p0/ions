@@ -49,7 +49,6 @@ string = @{
         "'" ~ sqchar* ~ "'" |
         // infer string
         (ASCII_ALPHANUMERIC |
-            PUNCTUATION |
             "/" |
             "~" |
             "_" |
